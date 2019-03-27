@@ -1,0 +1,76 @@
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body {
+    background: lightgrey;
+    height: 100vh;
+
+}
+
+.message {
+    background: cornflowerblue;
+    padding: 10px;
+    border-radius: 20px;
+    display: table;
+    max-width: 65%;
+
+}
+
+.message .text {
+    background: cornflowerblue;
+    color: white;
+    text-align: justify;
+
+}
+
+.name {
+    font-weight: bold;
+    color: white;
+}
+
+.uk-textarea {
+    resize: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.users > li {
+    padding: 5px;
+    background: #8bc34a;
+    color: white;
+    text-align: center;
+}
+
+.users > li.afk {
+    background: orange !important;
+}
+
+.messages-wrapper {
+    height: 510px;
+    overflow-y: auto;
+}
+
+.typing {
+    height: 15px;
+    line-height: 15px;
+}
+
+.typing > span {
+    font-size: 0.8rem;
+}

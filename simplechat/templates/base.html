@@ -1,0 +1,28 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base chat application</title>
+    <link rel="stylesheet" href="{% static 'css/uikit.min.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+<nav class="uk-navbar-container" data-uk-navbar>
+    <div class="uk-navbar-left">
+
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a class="uk-text-bold" href="{% url 'chat_page' %}">Chat page</a></li>
+        </ul>
+
+    </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<script src="{% static 'js/uikit.min.js' %}"></script>
+<script src="{% static 'js/uikit-icons.min.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

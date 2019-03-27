@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="uk-container uk-margin-medium-top">
+        <div data-uk-grid>
+
+            <div class="uk-width-5-6">
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small">
+                    <div class="messages-wrapper">
+                        <ul id="messages" data-uk-margin>
+                            {% for message in messages %}
+                                <li>
+                                    <div class="message">
+                                        <div class="name">
+                                            {{ message.user.username }}
+                                        </div>
+                                        <div class="text">
+                                            {{ message.text }}
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="typing" id="typing"></div>
+                </div>
+            </div>
+
+            <div class="uk-width-1-6">
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small">
+                    <ul id="users" class="users" data-uk-margin>
+                        {% for user in users %}
+                            <li>{{ user }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="uk-width-5-6">
+                <div class="uk-margin uk-card uk-card-default uk-card-body uk-padding-small">
+                    <textarea maxlength="12" class="uk-textarea" rows="5" id="messageBox" placeholder="Type message..."></textarea>
+                    <button id="messageSend"
+                            class="uk-button uk-button-small uk-button-primary uk-align-right uk-margin-small-top">Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
