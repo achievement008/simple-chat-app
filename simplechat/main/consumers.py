@@ -5,8 +5,11 @@ from simplechat.main.utils import update_user, save_message
 
 
 class ChatConsumer(JsonWebsocketConsumer):
-    def connect(self):
 
+    def connect(self):
+        """
+        Accept new connections and add user at chat_root group
+        """
         async_to_sync(self.channel_layer.group_add)(
             'chat_room',
             self.channel_name,
@@ -14,7 +17,9 @@ class ChatConsumer(JsonWebsocketConsumer):
         self.accept()
 
     def receive_json(self, content, **kwargs):
-
+        """
+        Called when consumer receive json
+        """
         message_type = content.get("type", None)
 
         update_user(content['username'])
@@ -27,7 +32,9 @@ class ChatConsumer(JsonWebsocketConsumer):
             self.typing(content["username"])
 
     def join(self, username):
-
+        """
+        Called when someone join chat.
+        """
         async_to_sync(self.channel_layer.group_send)(
             'chat_room',
             {
@@ -37,11 +44,9 @@ class ChatConsumer(JsonWebsocketConsumer):
         )
 
     def send_mess(self, message, username):
-
         """
         Called when someone sends message to chat.
         """
-
         async_to_sync(self.channel_layer.group_send)(
             'chat_room',
             {
@@ -52,7 +57,9 @@ class ChatConsumer(JsonWebsocketConsumer):
         )
 
     def typing(self, username):
-
+        """
+        Called when someone typing.
+        """
         async_to_sync(self.channel_layer.group_send)(
             'chat_room',
             {
@@ -97,7 +104,9 @@ class ChatConsumer(JsonWebsocketConsumer):
         )
 
     def chat_stats(self, event):
-
+        """
+        Send stats to clients.
+        """
         self.send_json(
             {
                 "msg_type": 'stats',

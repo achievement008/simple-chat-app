@@ -1,11 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
-import os
-from decimal import Decimal as _D
-
 import environ
-from django.urls import reverse_lazy
 
 ROOT_DIR = environ.Path(__file__) - 3  # (simplechat/config/settings/base.py - 3 = simplechat/)
 APPS_DIR = ROOT_DIR.path('simplechat')

@@ -10,6 +10,9 @@ logger = logging.getLogger('celery')
 
 @app.task
 def send_user_stats():
+    """
+    Generates a list of inactive users.
+    """
     users = Member.objects.values('username', 'updated').filter(
         updated__gte=datetime.datetime.now() - datetime.timedelta(hours=1))
 
