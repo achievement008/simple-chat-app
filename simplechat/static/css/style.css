@@ -62,7 +62,7 @@ ul {
 }
 
 .messages-wrapper {
-    height: 510px;
+    height: 65vh;
     overflow-y: auto;
 }
 

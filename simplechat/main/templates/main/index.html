@@ -8,9 +8,8 @@
 
 {% block content %}
 
-    <div class="uk-container uk-margin-medium-top">
-        <div data-uk-grid>
-
+    <div>
+        <div data-uk-grid data-uk-height-match>
             <div class="uk-width-5-6">
                 <div class="uk-card uk-card-default uk-card-body uk-padding-small">
                     <div class="messages-wrapper">
@@ -33,8 +32,8 @@
                 </div>
             </div>
 
-            <div class="uk-width-1-6">
-                <div class="uk-card uk-card-default uk-card-body uk-padding-small">
+            <div class="uk-width-1-6 uk-card uk-card-default uk-card-body uk-padding-small">
+                <div class="">
                     <ul id="users" class="users" data-uk-margin>
                         {% for user in users %}
                             <li>{{ user }}</li>
@@ -43,9 +42,9 @@
                 </div>
             </div>
 
-            <div class="uk-width-5-6">
-                <div class="uk-margin uk-card uk-card-default uk-card-body uk-padding-small">
-                    <textarea maxlength="12" class="uk-textarea" rows="5" id="messageBox" placeholder="Type message..."></textarea>
+            <div class="uk-width-5-6 uk-margin-small-top">
+                <div class="uk-card uk-card-default uk-card-body uk-padding-small">
+                    <textarea maxlength="500" class="uk-textarea" rows="5" id="messageBox" placeholder="Type message..."></textarea>
                     <button id="messageSend"
                             class="uk-button uk-button-small uk-button-primary uk-align-right uk-margin-small-top">Send
                     </button>
