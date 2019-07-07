@@ -1,5 +1,6 @@
 import datetime
 import logging
+import time
 
 from simplechat.main.models import Member
 from simplechat.taskapp.celery import app
@@ -23,3 +24,15 @@ def send_user_stats():
     afk_users_list = [i['username'] for i in afk_users]
 
     send_chat_stats(stats={'afk': afk_users_list})
+
+
+@app.task(bind=True)
+def long_task(self, sec=10):
+    print(self.request.id)
+    time.sleep(sec)
+    return sec
+
+
+@app.task(soft_time_limit=00)
+def comp(*args, **kwargs):
+    return sum(*args)

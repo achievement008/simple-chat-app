@@ -3,18 +3,42 @@ from channels.generic.websocket import JsonWebsocketConsumer
 
 from simplechat.main.utils import update_user, save_message
 
+from .user_store import UserConnections
+
 
 class ChatConsumer(JsonWebsocketConsumer):
 
     def connect(self):
-        """
-        Accept new connections and add user at chat_root group
-        """
-        async_to_sync(self.channel_layer.group_add)(
-            'chat_room',
-            self.channel_name,
-        )
-        self.accept()
+        user = self.scope['user']
+        if user.is_anonymous:
+            self.close()
+        else:
+            UserConnections.add_connection(user.id, self.channel_name)
+
+            async_to_sync(self.channel_layer.group_add)(
+                'chat_room',
+                self.channel_name,
+            )
+            async_to_sync(self.channel_layer.group_add)(
+                f'user_{user.id}',
+                self.channel_name,
+            )
+            self.accept()
+            self.send_json(
+                {
+                    "msg_type": 'you_has_been_connected',
+                    "status": "success",
+                },
+            )
+            print(UserConnections.get_connections())
+
+    def disconnect(self, code):
+
+        user = self.scope['user']
+
+        UserConnections.close_connection(user.id, self.channel_name)
+
+        print(UserConnections.get_connections())
 
     def receive_json(self, content, **kwargs):
         """

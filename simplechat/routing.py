@@ -1,9 +1,11 @@
+from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 
 from simplechat.main.routing import websocket_urlpatterns
 
 application = ProtocolTypeRouter({
-    'websocket': (
+    # (http->django views is added by default)
+    'websocket': AuthMiddlewareStack(
         URLRouter(
             websocket_urlpatterns
         )
