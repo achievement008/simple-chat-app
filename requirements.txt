@@ -11,7 +11,7 @@ channels==2.1.7
 channels-redis==2.3.2
 constantly==15.1.0
 daphne==2.2.5
-Django==2.1.9
+Django==2.2.13
 django-debug-toolbar==1.11
 django-environ==0.4.5
 django-extensions==2.1.4
